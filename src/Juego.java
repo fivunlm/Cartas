@@ -80,65 +80,79 @@ public class Juego extends Frame implements MouseListener, ActionListener {
 
     public void mousePressed(MouseEvent e) {
 
-        if (e.getSource() instanceof Imagen) {
+        if (e.getSource() instanceof Imagen) {      // Nodo 1
 
-            numero++;
-            switch (numero) {
-                case 1: {
-                    im = (Imagen) e.getSource();
-                    im.verCara();
-                    im.repaint();
+            numero++;                               //
+            switch (numero) {                       // Nodo 2
+
+                case 1: {                           //
+                    im = (Imagen) e.getSource();    //
+                    im.verCara();                   // Nodo 3
+                    im.repaint();                   //
+                    break;                          //
+                }
+
+
+                case 2: {                           // Nodo 4
+                    im2 = (Imagen) e.getSource();   //
+
+                    if (im2.getTapada() == false) { // Nodo 5
+                        numero--;                   // Nodo 6
+                    }
+
+                    if (im2.getTapada() == true) {  // Nodo 7
+
+                        im2.verCara();              //
+                        im2.repaint();              // Nodo 8
+
+                        if (win == 5) {             // Nodo 9
+                            win++;                  // Nodo 10
+                        }
+
+                        if (win == 6) {             // Nodo 11
+                            win = 0;                                // Nodo 12
+                            mensaje = new MensajeTxt("You Win");    //
+                            mensaje.show();                         //
+                            iniciar();                              //
+                        }
+                    }
                     break;
                 }
 
 
-                case 2: {
-                    im2 = (Imagen) e.getSource();
-                    if (im2.getTapada() == false) {
-                        numero--;
-                    }
-                    if (im2.getTapada() == true) {
-                        im2.verCara();
-                        im2.repaint();
-                        if (win == 5) {
-                            win++;
-                        }
-                        if (win == 6) {
-                            win = 0;
-                            mensaje = new MensajeTxt("You Win");
-                            mensaje.show();
-                            iniciar();
-                        }
-                    }
-                    break;
-                }
+                case 3: {                           // Nodo 13
+                    if (im.getNombre().equals(im2.getNombre())) { // Nodo 14
 
+                        im.verCara();               //
+                        im.repaint();               //
+                        im2.verCara();              // Nodo 15
+                        im2.repaint();              //
+                        numero = 0;                 //
+                        win++;                      //
 
-                case 3: {
-                    if (im.getNombre().equals(im2.getNombre())) {
-                        im.verCara();
-                        im.repaint();
-                        im2.verCara();
-                        im2.repaint();
-                        numero = 0;
-                        win++;
-                        if (win == 6) {
-                            win = 0;
+                        if (win == 6) {             // Nodo 16
+
+                            win = 0;                // Nodo 17
                         }
                         break;
+
                     } else {
-                        im.verReverso();
-                        im.repaint();
-                        im2.verReverso();
-                        im2.repaint();
-                        numero = 0;
-                        lose++;
-                        if (lose == err) {
-                            lose = 0;
-                            mensaje = new MensajeTxt("You Lose");
-                            mensaje.show();
-                            iniciar();
+
+                        im.verReverso();            //
+                        im.repaint();               //
+                        im2.verReverso();           // Nodo 18
+                        im2.repaint();              //
+                        numero = 0;                 //
+                        lose++;                     //
+                                                    //
+                        if (lose == err) {          //
+
+                            lose = 0;                               //
+                            mensaje = new MensajeTxt("You Lose");   // Nodo 19
+                            mensaje.show();                         //
+                            iniciar();                              //
                         }
+
                         break;
 
                     }
@@ -146,14 +160,18 @@ public class Juego extends Frame implements MouseListener, ActionListener {
 
             }
         }
-    }
+    }           // Nodo 21
 
     public void mouseReleased(MouseEvent e) {
     }
 
     public static void main(String args[]) {
-        Juego window = new Juego();
 
+        PasswordBox passwordBox = new PasswordBox();
+
+        passwordBox.show();
+
+        Juego window = new Juego();
         window.setTitle("Juego Cartas");
         window.setSize(500, 500);
         window.show();
