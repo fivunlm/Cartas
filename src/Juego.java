@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Juego extends Frame implements MouseListener, ActionListener {
     Panel p1 = new Panel();
@@ -13,6 +15,7 @@ public class Juego extends Frame implements MouseListener, ActionListener {
     MensajeTxt mensaje;
     Button botonjugar = new Button("Jugar");
     Button botonsalir = new Button("Exit");
+    Button botonAyuda = new Button("Ayuda");
 
     public Juego() {
         foto[0] = new Imagen("img\\uno.jpeg");
@@ -29,8 +32,10 @@ public class Juego extends Frame implements MouseListener, ActionListener {
         foto[11] = new Imagen("img\\seis.jpeg");
         botonsalir.addActionListener(this);
         botonjugar.addActionListener(this);
+        botonAyuda.addActionListener(this);
         p1.add(botonjugar);
         p1.add(botonsalir);
+        p1.add(botonAyuda);
         p1.add(new Label("Max.Errores"));
         p1.add(maxerr);
         err = Integer.parseInt(maxerr.getText());
@@ -62,11 +67,23 @@ public class Juego extends Frame implements MouseListener, ActionListener {
             err = Integer.parseInt(maxerr.getText());
             System.out.print(err);
             System.out.println("Boton Jugar Presionado");
-        } else {
+        } else if(evt1.getSource() == botonsalir ) {
             new MensajeTxt("chao");
             System.out.println("Boton exit Presionado");
             System.exit(0);
         }
+        else {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    File userManualFile = new File("doc\\ManualUsuario.pdf");
+                    Desktop.getDesktop().open(userManualFile);
+                } catch (IOException ex) {
+                    System.out.println("No se puede abrir el manual de ayuda");
+                    new MensajeTxt("No se puede abrir el manual de ayuda");
+                }
+            }
+        }
+
     }
 
     public void mouseClicked(MouseEvent e) {
