@@ -4,7 +4,7 @@ import java.awt.event.*;
 class MensajeTxt extends Dialog implements ActionListener {
 
     public MensajeTxt(String texto) {
-        super(new Frame(), "Pregunta??????", true);
+        super(new Frame(), "", true);
         Button b = new Button("cerrar");
         setLayout(new BorderLayout());
         setBackground(Color.white);

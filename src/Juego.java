@@ -77,11 +77,13 @@ public class Juego extends Frame implements MouseListener, ActionListener {
                 try {
                     File userManualFile = new File("doc\\ManualUsuario.pdf");
                     Desktop.getDesktop().open(userManualFile);
-                } catch (IOException ex) {
+                } catch (Exception ex) {
                     System.out.println("No se puede abrir el manual de ayuda");
                     new MensajeTxt("No se puede abrir el manual de ayuda");
                 }
             }
+            else
+                new MensajeTxt("No se puede abrir el manual de ayuda");
         }
 
     }
@@ -128,7 +130,7 @@ public class Juego extends Frame implements MouseListener, ActionListener {
 
                         if (win == 6) {             // Nodo 11
                             win = 0;                                // Nodo 12
-                            mensaje = new MensajeTxt("You Win");    //
+                            mensaje = new MensajeTxt("Felicitaciones Ganaste!");    //
                             mensaje.show();                         //
                             iniciar();                              //
                         }
@@ -165,7 +167,7 @@ public class Juego extends Frame implements MouseListener, ActionListener {
                         if (lose == err) {          //
 
                             lose = 0;                               //
-                            mensaje = new MensajeTxt("You Lose");   // Nodo 19
+                            mensaje = new MensajeTxt("Has Perdido");   // Nodo 19
                             mensaje.show();                         //
                             iniciar();                              //
                         }
@@ -189,7 +191,7 @@ public class Juego extends Frame implements MouseListener, ActionListener {
         passwordBox.show();
 
         Juego window = new Juego();
-        window.setTitle("Juego Cartas");
+        window.setTitle("CardZ");
         window.setSize(500, 500);
         window.show();
 

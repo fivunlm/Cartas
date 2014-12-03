@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Cartas:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Cartas_jar</output-path>
+    <root id="archive" name="Cartas.jar">
+      <element id="module-output" name="Cartas" />
+    </root>
+  </artifact>
+</component>
